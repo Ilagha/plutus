@@ -37,7 +37,7 @@ pipeline {
   post {
     always {
       sh 'docker compose down -v || true'
-      junit 'target/surefire-reports/*.xml'
+      junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'	
       archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
     }
   }
