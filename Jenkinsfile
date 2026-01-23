@@ -9,11 +9,15 @@ pipeline {
   options {
     timestamps()
   }
-
+  
   stages {
     stage('Checkout') {
+      steps { checkout scm }
+    }
+
+    stage('Start DB') {
       steps {
-        checkout scm
+        sh 'docker compose up -d'
       }
     }
 
@@ -21,22 +25,20 @@ pipeline {
       steps {
         sh 'mvn -B clean test'
       }
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
-        }
-      }
     }
 
     stage('Package') {
       steps {
         sh 'mvn -B clean package -DskipTests'
       }
-      post {
-        success {
-          archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-        }
-      }
+    }
+  }
+
+  post {
+    always {
+      sh 'docker compose down -v || true'
+      junit 'target/surefire-reports/*.xml'
+      archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
     }
   }
 }
