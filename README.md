@@ -20,15 +20,7 @@ It demonstrates a **layered, production-style architecture** with proper separat
 
 Plutus follows a **layered architecture**:
 
-Client (curl / frontend)
-↓
-API Layer (Controllers + DTOs)
-↓
-Service Layer (Business Logic)
-↓
-Repository Layer (JPA)
-↓
-PostgreSQL
+Client (curl / frontend) --> API Layer (Controllers + DTOs) --> Service Layer (Business Logic) --> Repository Layer (JPA) --> PostgreSQL
 
 
 Each layer has a single responsibility, making the codebase:
