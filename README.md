@@ -32,31 +32,22 @@ Each layer has a single responsibility, making the codebase:
 
 ## 📁 Project Structure
 
-
-src/main/java/com/company/plutus
-├── api
-│ ├── TaskController.java
-│ └── dto
-│ ├── CreateTaskRequest.java
-│ └── TaskResponse.java
-│
-├── domain
-│ ├── Task.java
-│ └── TaskStatus.java
-│
-├── repository
-│ └── TaskRepository.java
-│
-├── service
-│ └── TaskService.java
-│
-└── PlutusApplication.java
-
-src/main/resources
-├── application.properties
-└── db
-└── migration
-└── V1__create_tasks_table.sql
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── com/company/plutus/
+│   │       ├── HealthController.java
+│   │       └── PlutusApplication.java
+│   └── resources/
+│       ├── application.properties
+│       └── db/migration/
+│           └── V1__create_tasks_table.sql
+└── test/
+    └── java/
+        └── com/company/plutus/
+            └── PlutusApplicationTests.java
+```
 
 
 ---
